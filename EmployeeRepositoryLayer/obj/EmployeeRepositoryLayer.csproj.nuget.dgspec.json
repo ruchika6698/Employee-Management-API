@@ -1,0 +1,134 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\boss\\source\\repos\\EmployeeManagementAPI\\EmployeeRepositoryLayer\\EmployeeRepositoryLayer.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\boss\\source\\repos\\EmployeeManagementAPI\\EmployeeCommanLayer\\EmployeeCommanLayer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\boss\\source\\repos\\EmployeeManagementAPI\\EmployeeCommanLayer\\EmployeeCommanLayer.csproj",
+        "projectName": "EmployeeCommanLayer",
+        "projectPath": "C:\\Users\\boss\\source\\repos\\EmployeeManagementAPI\\EmployeeCommanLayer\\EmployeeCommanLayer.csproj",
+        "packagesPath": "C:\\Users\\boss\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\boss\\source\\repos\\EmployeeManagementAPI\\EmployeeCommanLayer\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\boss\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\boss\\source\\repos\\EmployeeManagementAPI\\EmployeeRepositoryLayer\\EmployeeRepositoryLayer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\boss\\source\\repos\\EmployeeManagementAPI\\EmployeeRepositoryLayer\\EmployeeRepositoryLayer.csproj",
+        "projectName": "EmployeeRepositoryLayer",
+        "projectPath": "C:\\Users\\boss\\source\\repos\\EmployeeManagementAPI\\EmployeeRepositoryLayer\\EmployeeRepositoryLayer.csproj",
+        "packagesPath": "C:\\Users\\boss\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\boss\\source\\repos\\EmployeeManagementAPI\\EmployeeRepositoryLayer\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\boss\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "C:\\Users\\boss\\source\\repos\\EmployeeManagementAPI\\EmployeeCommanLayer\\EmployeeCommanLayer.csproj": {
+                "projectPath": "C:\\Users\\boss\\source\\repos\\EmployeeManagementAPI\\EmployeeCommanLayer\\EmployeeCommanLayer.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

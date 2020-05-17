@@ -1,0 +1,12 @@
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeRepositoryLayer\bin\Debug\netcoreapp2.1\EmployeeRepositoryLayer.deps.json
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeRepositoryLayer\bin\Debug\netcoreapp2.1\EmployeeRepositoryLayer.dll
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeRepositoryLayer\bin\Debug\netcoreapp2.1\EmployeeRepositoryLayer.pdb
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeRepositoryLayer\bin\Debug\netcoreapp2.1\EmployeeCommanLayer.dll
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeRepositoryLayer\bin\Debug\netcoreapp2.1\EmployeeCommanLayer.pdb
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeRepositoryLayer\obj\Debug\netcoreapp2.1\EmployeeRepositoryLayer.csprojAssemblyReference.cache
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeRepositoryLayer\obj\Debug\netcoreapp2.1\EmployeeRepositoryLayer.AssemblyInfoInputs.cache
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeRepositoryLayer\obj\Debug\netcoreapp2.1\EmployeeRepositoryLayer.AssemblyInfo.cs
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeRepositoryLayer\obj\Debug\netcoreapp2.1\EmployeeRepositoryLayer.csproj.CopyComplete
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeRepositoryLayer\obj\Debug\netcoreapp2.1\EmployeeRepositoryLayer.dll
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeRepositoryLayer\obj\Debug\netcoreapp2.1\EmployeeRepositoryLayer.pdb
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeRepositoryLayer\obj\Debug\netcoreapp2.1\EmployeeRepositoryLayer.csproj.CoreCompileInputs.cache

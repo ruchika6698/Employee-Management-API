@@ -1,0 +1,14 @@
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeBusinessLayer\bin\Debug\netcoreapp2.1\EmployeeBusinessLayer.deps.json
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeBusinessLayer\bin\Debug\netcoreapp2.1\EmployeeBusinessLayer.dll
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeBusinessLayer\bin\Debug\netcoreapp2.1\EmployeeBusinessLayer.pdb
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeBusinessLayer\bin\Debug\netcoreapp2.1\EmployeeCommanLayer.dll
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeBusinessLayer\bin\Debug\netcoreapp2.1\EmployeeRepositoryLayer.dll
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeBusinessLayer\bin\Debug\netcoreapp2.1\EmployeeCommanLayer.pdb
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeBusinessLayer\bin\Debug\netcoreapp2.1\EmployeeRepositoryLayer.pdb
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeBusinessLayer\obj\Debug\netcoreapp2.1\EmployeeBusinessLayer.csprojAssemblyReference.cache
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeBusinessLayer\obj\Debug\netcoreapp2.1\EmployeeBusinessLayer.AssemblyInfoInputs.cache
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeBusinessLayer\obj\Debug\netcoreapp2.1\EmployeeBusinessLayer.AssemblyInfo.cs
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeBusinessLayer\obj\Debug\netcoreapp2.1\EmployeeBusinessLayer.csproj.CopyComplete
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeBusinessLayer\obj\Debug\netcoreapp2.1\EmployeeBusinessLayer.dll
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeBusinessLayer\obj\Debug\netcoreapp2.1\EmployeeBusinessLayer.pdb
+C:\Users\boss\source\repos\EmployeeManagementAPI\EmployeeBusinessLayer\obj\Debug\netcoreapp2.1\EmployeeBusinessLayer.csproj.CoreCompileInputs.cache

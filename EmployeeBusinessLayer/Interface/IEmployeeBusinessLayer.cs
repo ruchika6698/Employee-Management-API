@@ -25,5 +25,7 @@ namespace EmployeeBusinessLayer.Interface
         Task<int> UpdateEmployee(UpdateModel data);
         //Interface method for get Employee detail by id
         UpdateModel Getspecificemployee(int ID);
+        //Interface method for get all Employee detail
+        IEnumerable<UpdateModel> GetAllemployee();
     }
 }

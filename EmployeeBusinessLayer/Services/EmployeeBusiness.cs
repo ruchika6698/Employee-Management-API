@@ -164,5 +164,19 @@ namespace EmployeeBusinessLayer
             }
         }
 
+        /// <summary>
+        ///  API for get all emplyee details
+        /// </summary>
+        public IEnumerable<UpdateModel> GetAllemployee()
+        {
+            try
+            {
+                return _EmployeeRepository.GetAllemployee();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

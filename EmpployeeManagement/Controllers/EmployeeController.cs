@@ -206,6 +206,20 @@ namespace EmpployeeManagement.Controllers
             }
         }
 
-
+        /// <summary>
+        ///  API for get all emplyee details
+        /// </summary>
+        [HttpGet]
+        public IEnumerable<UpdateModel> GetAllemployee()
+        {
+            try
+            {
+                return BusinessLayer.GetAllemployee();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

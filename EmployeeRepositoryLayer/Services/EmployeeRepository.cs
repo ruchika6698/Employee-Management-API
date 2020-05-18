@@ -244,7 +244,41 @@ namespace EmployeeRepositoryLayer
             }
         }
 
-
+        /// <summary>
+        ///  database connection for get all emplyee details
+        /// </summary>
+        public IEnumerable<UpdateModel> GetAllemployee()
+        {
+            try
+            {
+                List<UpdateModel> listemployee = new List<UpdateModel>();
+                SqlConnection connection = DatabaseConnection();
+                //for store procedure and connection to database 
+                SqlCommand command = StoreProcedureConnection("spAllEmployeeDetail", connection);
+                connection.Open();
+                //Read data from database
+                SqlDataReader Response = command.ExecuteReader();
+                while (Response.Read())
+                {
+                    UpdateModel employee = new UpdateModel();
+                    employee.ID = Convert.ToInt32(Response["ID"]);
+                    employee.EmployeeName = Response["EmployeeName"].ToString();
+                    employee.Username = Response["Username"].ToString();
+                    employee.Gender = Response["Gender"].ToString();
+                    employee.City = Response["City"].ToString();
+                    employee.EmailID = Response["EmailID"].ToString();
+                    employee.Designation = Response["Designation"].ToString();
+                    employee.WorkingExperience = Convert.ToInt32(Response["WorkingExperience"]);
+                    listemployee.Add(employee);
+                }
+                connection.Close();
+                return listemployee;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
 
         /// <summary>
         ///  database connection with connection string

@@ -207,6 +207,43 @@ namespace EmployeeRepositoryLayer
             }
         }
 
+        /// <summary>
+        ///  database connection get specific emplyee details
+        /// </summary>
+        /// <param name="ID">Add new Entry</param>
+        /// <returns></returns>
+        public UpdateModel Getspecificemployee(int ID)
+        {
+            try
+            {
+                UpdateModel employee = new UpdateModel();
+                SqlConnection connection = DatabaseConnection();
+                //for store procedure and connection to database 
+                SqlCommand command = StoreProcedureConnection("spSpecificEmployeeRcord", connection);
+                command.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+                connection.Open();
+                //Read data from database
+                SqlDataReader Response = command.ExecuteReader();
+                while (Response.Read())
+                {
+                    employee.ID = Convert.ToInt32(Response["ID"]);
+                    employee.EmployeeName = Response["EmployeeName"].ToString();
+                    employee.Username = Response["Username"].ToString();
+                    employee.Gender = Response["Gender"].ToString();
+                    employee.City = Response["City"].ToString();
+                    employee.EmailID = Response["EmailID"].ToString();
+                    employee.Designation = Response["Designation"].ToString();
+                    employee.WorkingExperience = Convert.ToInt32(Response["WorkingExperience"]);
+                }
+                connection.Close();
+                return employee;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
 
 
         /// <summary>

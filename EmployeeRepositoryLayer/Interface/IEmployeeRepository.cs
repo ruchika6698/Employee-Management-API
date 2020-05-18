@@ -23,5 +23,7 @@ namespace EmployeeRepositoryLayer.Interface
         Task<int> DeleteEmployee(EmployeeID Data);
         //Interface method for update Employee detail
         Task<int> UpdateEmployee(UpdateModel data);
+        //Interface method for get Employee detail by id
+        UpdateModel Getspecificemployee(int ID);
     }
 }

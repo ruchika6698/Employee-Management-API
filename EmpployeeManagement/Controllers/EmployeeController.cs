@@ -188,6 +188,24 @@ namespace EmpployeeManagement.Controllers
             }
         }
 
+        // <summary>
+        ///  API for get specific emplyee details
+        /// </summary>
+        /// <param name="data">Add new Entry</param>
+        /// <returns></returns>
+        [HttpGet("{ID}")]
+        public UpdateModel Getspecificemployee(int ID)
+        {
+            try
+            {
+                return BusinessLayer.Getspecificemployee(ID);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
 
     }
 }

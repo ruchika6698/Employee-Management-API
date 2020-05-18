@@ -147,6 +147,22 @@ namespace EmployeeBusinessLayer
             }
         }
 
+        /// <summary>
+        ///  API for get specific emplyee details
+        /// </summary>
+        /// <param name="ID"> get specific Entry</param>
+        /// <returns></returns>
+        public UpdateModel Getspecificemployee(int ID)
+        {
+            try
+            {
+                return _EmployeeRepository.Getspecificemployee(ID);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
 
     }
 }

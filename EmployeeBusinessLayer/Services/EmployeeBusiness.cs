@@ -105,6 +105,7 @@ namespace EmployeeBusinessLayer
             try
             {
                 int Result = await _EmployeeRepository.DeleteEmployee(Data);
+                //if result is equal null then return true
                 if (Result == 0)
                 {
                     return 0;
@@ -119,6 +120,33 @@ namespace EmployeeBusinessLayer
                 throw new Exception(e.Message);
             }
         }
+
+        /// <summary>
+        ///  API for Update Excisting entry
+        /// </summary>
+        /// <param name="data">Update data</param>
+        /// <returns></returns>
+        public async Task<int> UpdateEmployee(UpdateModel data)
+        {
+            try
+            {
+                int Result = await _EmployeeRepository.UpdateEmployee(data);
+                //if result is equal null then return true
+                if (Result == 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
 
     }
 }

@@ -170,6 +170,46 @@ namespace EmployeeRepositoryLayer
         }
 
         /// <summary>
+        ///   database connection for Update Excisting entry
+        /// </summary>
+        /// <param name="data">Add new Entry</param>
+        /// <returns></returns>
+        public async Task<int> UpdateEmployee(UpdateModel data)
+        {
+            try
+            {
+                SqlConnection connection = DatabaseConnection();
+                //for store procedure and connection to database 
+                SqlCommand command = StoreProcedureConnection("spUpdateemployee", connection);
+                command.Parameters.AddWithValue("@ID", data.ID);
+                command.Parameters.AddWithValue("@EmployeeName", data.EmployeeName);
+                command.Parameters.AddWithValue("@Username", data.Username);
+                command.Parameters.AddWithValue("@Gender", data.Gender);
+                command.Parameters.AddWithValue("@City", data.City);
+                command.Parameters.AddWithValue("@EmailID", data.EmailID);
+                command.Parameters.AddWithValue("@Designation", data.Designation);
+                command.Parameters.AddWithValue("@WorkingExperience", data.WorkingExperience);
+                connection.Open();
+                int Response = await command.ExecuteNonQueryAsync();
+                connection.Close();
+                if (Response == 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+
+
+        /// <summary>
         ///  database connection with connection string
         /// </summary>
         private SqlConnection DatabaseConnection()

@@ -156,5 +156,38 @@ namespace EmpployeeManagement.Controllers
             }
         }
 
+        /// <summary>
+        ///  API for Update Excisting entry
+        /// </summary>
+        /// <param name="data">Update data</param>
+        /// <returns></returns>
+        [HttpPatch]
+        [Route("update")]
+        public async Task<IActionResult> UpdateEmployee([FromBody] UpdateModel data)
+        {
+            try
+            {
+                int Result = await BusinessLayer.UpdateEmployee(data);
+                //if result is equal to zero then wrong input 
+                if (Result == 0)
+                {
+                    var Status = "False";
+                    var Message = "wrong input";
+                    return this.BadRequest(new { Status, Message, data });
+                }
+                else                                             //Else employee Data is updated Sucessfully
+                {
+                    var Status = "True";
+                    var Message = "Employee Data Updated Sucessfully";
+                    return this.Ok(new { Status, Message, data });
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+
     }
 }

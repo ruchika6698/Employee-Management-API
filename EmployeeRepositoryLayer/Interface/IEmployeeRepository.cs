@@ -21,5 +21,7 @@ namespace EmployeeRepositoryLayer.Interface
         Task<bool> AddEmployeeData(EmployeeModel data);
         //Interface method for delete Employee detail
         Task<int> DeleteEmployee(EmployeeID Data);
+        //Interface method for update Employee detail
+        Task<int> UpdateEmployee(UpdateModel data);
     }
 }

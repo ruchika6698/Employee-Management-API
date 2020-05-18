@@ -43,6 +43,29 @@ namespace EmployeeBusinessLayer
                 throw new Exception(e.Message);
             }
         }
-       
+        /// <summary>
+        ///  API for Login
+        /// </summary>
+        /// <param name="data"> Login API</param>
+        /// <returns></returns>
+        public async Task<bool> EmployeeLogin(Login data)
+        {
+            try
+            {
+                var Result = await _EmployeeRepository.EmployeeLogin(data);
+                if (!Result.Equals(null))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

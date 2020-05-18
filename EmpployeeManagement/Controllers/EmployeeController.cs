@@ -59,6 +59,36 @@ namespace EmpployeeManagement.Controllers
                 return BadRequest(new { error = e.Message });
             }
         }
-        
+        /// <summary>
+        ///  API for Login
+        /// </summary>
+        /// <param name="Info"> Login API</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> EmployeeLogin([FromBody] Login Info)
+        {
+            try
+            {
+                var Result = await BusinessLayer.EmployeeLogin(Info);
+                //if Result is not equal to null then Login sucessful
+                if (!Result.Equals(null))
+                {
+                    var status = "True";
+                    var Message = "Login Successful";
+                    return Ok(new { status, Message, Info });
+                }
+                else                                        //Username or Password Incorrect
+                {
+                    var status = "False";
+                    var Message = "Invaid Username Or Passoword";
+                    return BadRequest(new { status, Message, Info });
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

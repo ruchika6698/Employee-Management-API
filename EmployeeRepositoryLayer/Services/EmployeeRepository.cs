@@ -62,7 +62,39 @@ namespace EmployeeRepositoryLayer
                 throw new Exception(e.Message);
            }
         }
-        
+        /// <summary>
+        ///   database connection for Login
+        /// </summary>
+        /// <param name="data"> Login API</param>
+        /// <returns></returns>
+        public async Task<bool> EmployeeLogin(Login data)
+        {
+            try
+            {
+                SqlConnection connection = DatabaseConnection();
+                //password encrption
+                string Password = EncryptedPassword.EncodePasswordToBase64(data.Password);
+                //for store procedure and connection to database
+                SqlCommand command = StoreProcedureConnection("spEmployee_login", connection);
+                command.Parameters.AddWithValue("@Username", data.Username);
+                command.Parameters.AddWithValue("@Password", Password);
+                connection.Open();
+                int Response = await command.ExecuteNonQueryAsync();
+                connection.Close();
+                if (Response != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
         /// <summary>
         ///  database connection with connection string
         /// </summary>

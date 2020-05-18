@@ -15,6 +15,7 @@ namespace EmployeeBusinessLayer.Interface
     {
         //Interface method for Employee Registration
         Task<bool> EmployeeRegister(EmployeeModel data);
-        
+        //Interface method for Employee Login
+        Task<bool> EmployeeLogin(Login data);
     }
 }

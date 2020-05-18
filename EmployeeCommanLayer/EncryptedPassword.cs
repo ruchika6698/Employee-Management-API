@@ -1,4 +1,9 @@
-﻿using System;
+﻿///-----------------------------------------------------------------
+///   Class:       EncryptedPassword
+///   Description: Password Validation
+///   Author:      Ruchika                   Date: 18/5/2020
+///-----------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Text;
 

@@ -1,4 +1,9 @@
-﻿using System;
+﻿///-----------------------------------------------------------------
+///   Class:       Login
+///   Description: Poco class for all Login employee details
+///   Author:      Ruchika                   Date: 18/5/2020
+///-----------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;

@@ -1,4 +1,9 @@
-﻿using System;
+﻿///-----------------------------------------------------------------
+///   Class:       EmployeeModel
+///   Description: Poco class for all employee details
+///   Author:      Ruchika                   Date: 18/5/2020
+///-----------------------------------------------------------------
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace EmployeeCommanLayer
@@ -15,7 +20,7 @@ namespace EmployeeCommanLayer
         public string Gender { get; set; }
         public string City { get; set; }
         [Required(ErrorMessage = "EmailID Is Required")]
-        [EmailAddress]
+        [RegularExpression("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$", ErrorMessage = "E-mail is not valid")]
         public string EmailID { get; set; }
         public string Designation { get; set; }
         public int WorkingExperience { get; set; }

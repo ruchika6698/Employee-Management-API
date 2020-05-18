@@ -17,5 +17,7 @@ namespace EmployeeRepositoryLayer.Interface
         Task<bool> EmployeeRegister(EmployeeModel data);
         //Interface method for Employee Login
         Task<bool> EmployeeLogin(Login data);
+        //Interface method for Add Employee data
+        Task<bool> AddEmployeeData(EmployeeModel data);
     }
 }

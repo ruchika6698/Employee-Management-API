@@ -29,6 +29,7 @@ namespace EmployeeBusinessLayer
             try
             {
                 var Result = await _EmployeeRepository.EmployeeRegister(data);
+                //if result is not equal null then return true
                 if (!Result.Equals(null))
                 {
                     return true;
@@ -53,6 +54,32 @@ namespace EmployeeBusinessLayer
             try
             {
                 var Result = await _EmployeeRepository.EmployeeLogin(data);
+                //if result is not equal null then return true
+                if (!Result.Equals(null))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        /// <summary>
+        ///  API for Add new entry
+        /// </summary>
+        /// <param name="data">Add new Entry</param>
+        /// <returns></returns>
+        public async Task<bool> AddEmployeeData(EmployeeModel data)
+        {
+            try
+            {
+                var Result = await _EmployeeRepository.EmployeeRegister(data);
+                //if result is not equal null then return true
                 if (!Result.Equals(null))
                 {
                     return true;

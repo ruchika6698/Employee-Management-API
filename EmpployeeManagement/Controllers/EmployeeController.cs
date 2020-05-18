@@ -59,6 +59,7 @@ namespace EmpployeeManagement.Controllers
                 return BadRequest(new { error = e.Message });
             }
         }
+
         /// <summary>
         ///  API for Login
         /// </summary>
@@ -90,5 +91,38 @@ namespace EmpployeeManagement.Controllers
                 throw new Exception(e.Message);
             }
         }
+
+        /// <summary>
+        ///  API for Add new entry
+        /// </summary>
+        /// <param name="Info">Add new Entry</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("addnewentry")]
+        public async Task<IActionResult> AddEmployeeData([FromBody]EmployeeModel Info)
+        {
+            try
+            {
+                bool entry = await BusinessLayer.AddEmployeeData(Info);
+                //if entry is not equal to null then Login sucessful
+                if (!entry.Equals(null))
+                {
+                    var status = "True";
+                    var Message = "New Entry Added Sucessfully";
+                    return this.Ok(new { status, Message, Info });
+                }
+                else                                              //Entry is not added
+                {
+                    var status = "False";
+                    var Message = "New Entry is not Added";
+                    return this.BadRequest(new { status, Message, Info });
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
     }
 }

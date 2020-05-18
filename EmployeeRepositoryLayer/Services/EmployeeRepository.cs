@@ -62,6 +62,7 @@ namespace EmployeeRepositoryLayer
                 throw new Exception(e.Message);
            }
         }
+
         /// <summary>
         ///   database connection for Login
         /// </summary>
@@ -95,6 +96,47 @@ namespace EmployeeRepositoryLayer
                 throw new Exception(e.Message);
             }
         }
+
+        /// <summary>
+        ///  database connection for Add new entry
+        /// </summary>
+        /// <param name="data">Add new Entry</param>
+        /// <returns></returns>
+        public async Task<bool> AddEmployeeData(EmployeeModel data)
+        {
+            try
+            {
+                SqlConnection connection = DatabaseConnection();
+                //password Encryption
+                string Password = EncryptedPassword.EncodePasswordToBase64(data.Password);
+                //for store procedure and connection to database 
+                SqlCommand command = StoreProcedureConnection("spAddnewEntry", connection);
+                command.Parameters.AddWithValue("@EmployeeName", data.EmployeeName);
+                command.Parameters.AddWithValue("@Username", data.Username);
+                command.Parameters.AddWithValue("@Password", Password);
+                command.Parameters.AddWithValue("@Gender", data.Gender);
+                command.Parameters.AddWithValue("@City", data.City);
+                command.Parameters.AddWithValue("@EmailID", data.EmailID);
+                command.Parameters.AddWithValue("@Designation", data.Designation);
+                command.Parameters.AddWithValue("@WorkingExperience", data.WorkingExperience);
+                connection.Open();
+                int Response = await command.ExecuteNonQueryAsync();
+                connection.Close();
+                if (Response != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         /// <summary>
         ///  database connection with connection string
         /// </summary>
@@ -104,6 +146,7 @@ namespace EmployeeRepositoryLayer
             string connectionString = configuration.GetSection("ConnectionStrings").GetSection("EmployeeData").Value;
             return new SqlConnection(connectionString);
         }
+
         /// <summary>
         /// sqlcommand for storeprocedure
         /// </summary>

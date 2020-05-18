@@ -124,5 +124,37 @@ namespace EmpployeeManagement.Controllers
             }
         }
 
+        /// <summary>
+        ///  API for Delete data
+        /// </summary>
+        /// <param name="Data">Delete data</param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("delete")]
+        public async Task<IActionResult> DeleteEmployee(EmployeeID Data)
+        {
+            try
+            {
+                int result = await BusinessLayer.DeleteEmployee(Data);
+                //if result is not equal to zero then details Deleted sucessfully
+                if (result != 0)
+                {
+                    var Status = "True";
+                    var Message = "Employee Data deleted Sucessfully";
+                    return this.Ok(new { Status, Message, Data });
+                }
+                else                                           //Data is not deleted 
+                {
+                    var Status = "False";
+                    var Message = "Employee Data is not deleted Sucessfully";
+                    return this.BadRequest(new { Status, Message, Data });
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
     }
 }

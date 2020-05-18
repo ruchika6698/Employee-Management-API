@@ -138,6 +138,38 @@ namespace EmployeeRepositoryLayer
         }
 
         /// <summary>
+        ///  database connection for Delete data
+        /// </summary>
+        /// <param name="Data">Delete data</param>
+        /// <returns></returns>
+        public async Task<int> DeleteEmployee(EmployeeID Data)
+        {
+
+            try
+            {
+                SqlConnection connection = DatabaseConnection();
+                //for store procedure and connection to database 
+                SqlCommand command = StoreProcedureConnection("spDeleteEmployeeRcord", connection);
+                command.Parameters.AddWithValue("@ID", Data.ID);
+                connection.Open();
+                int Response = await command.ExecuteNonQueryAsync();
+                connection.Close();
+                if (Response != 0)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
         ///  database connection with connection string
         /// </summary>
         private SqlConnection DatabaseConnection()

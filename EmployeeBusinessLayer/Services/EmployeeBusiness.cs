@@ -94,5 +94,31 @@ namespace EmployeeBusinessLayer
                 throw new Exception(e.Message);
             }
         }
+
+        /// <summary>
+        ///  API for Delete data
+        /// </summary>
+        /// <param name="Data">Delete data</param>
+        /// <returns></returns>
+        public async Task<int> DeleteEmployee(EmployeeID Data)
+        {
+            try
+            {
+                int Result = await _EmployeeRepository.DeleteEmployee(Data);
+                if (Result == 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
     }
 }

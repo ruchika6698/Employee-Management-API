@@ -19,5 +19,7 @@ namespace EmployeeBusinessLayer.Interface
         Task<bool> EmployeeLogin(Login data);
         //Interface method for Add Employee data
         Task<bool> AddEmployeeData(EmployeeModel data);
+        //Interface method for delete Employee detail
+        Task<int> DeleteEmployee(EmployeeID Data);
     }
 }

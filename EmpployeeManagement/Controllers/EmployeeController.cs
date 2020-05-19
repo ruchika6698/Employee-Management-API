@@ -77,13 +77,13 @@ namespace EmpployeeManagement.Controllers
                 {
                     var status = "True";
                     var Message = "Login Successful";
-                    return Ok(new { status, Message, Info });
+                    return Ok(new { status, Message, Result });
                 }
                 else                                        //Username or Password Incorrect
                 {
                     var status = "False";
-                    var Message = "Invaid Username Or Passoword";
-                    return BadRequest(new { status, Message, Info });
+                    var Message = "Invaid Username Or Password";
+                    return BadRequest(new { status, Message, Result });
                 }
             }
             catch (Exception e)

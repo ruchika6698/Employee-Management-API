@@ -73,9 +73,7 @@ namespace EmployeeRepositoryLayer
             try
             {
                 SqlConnection connection = DatabaseConnection();
-                //password encrption
                 string Password = EncryptedPassword.EncodePasswordToBase64(data.Password);
-                //for store procedure and connection to database
                 SqlCommand command = StoreProcedureConnection("spEmployee_login", connection);
                 command.Parameters.AddWithValue("@Username", data.Username);
                 command.Parameters.AddWithValue("@Password", Password);
@@ -180,7 +178,7 @@ namespace EmployeeRepositoryLayer
             {
                 SqlConnection connection = DatabaseConnection();
                 //for store procedure and connection to database 
-                SqlCommand command = StoreProcedureConnection("spUpdateemployee", connection);
+                SqlCommand command = StoreProcedureConnection("spUpdateemployeedetails", connection);
                 command.Parameters.AddWithValue("@ID", data.ID);
                 command.Parameters.AddWithValue("@EmployeeName", data.EmployeeName);
                 command.Parameters.AddWithValue("@Username", data.Username);

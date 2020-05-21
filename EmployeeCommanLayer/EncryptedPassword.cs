@@ -14,7 +14,7 @@ namespace EmployeeCommanLayer
         /// <summary>
         ///     Encode the Original string into a Encrypted form that ununderstatble for the other user
         /// </summary>
-        /// <param name="password">Store the Password </param>
+        /// <param name="Password">Store the Password </param>
         /// <returns>Return the Password in the Encrypted Form</returns>
         public static string EncodePasswordToBase64(string Password)
         {

@@ -100,7 +100,7 @@ namespace EmployeeRepositoryLayer
         /// </summary>
         /// <param name="data">Add new Entry</param>
         /// <returns></returns>
-        public async Task<bool> AddEmployeeData(EmployeeModel data)
+        public async Task<bool> AddEmployeeData(Addentry data)
         {
             try
             {
@@ -108,7 +108,8 @@ namespace EmployeeRepositoryLayer
                 //password Encryption
                 string Password = EncryptedPassword.EncodePasswordToBase64(data.Password);
                 //for store procedure and connection to database 
-                SqlCommand command = StoreProcedureConnection("spAddnewEntry", connection);
+                SqlCommand command = StoreProcedureConnection("spAdddnewEmployees", connection);
+                command.Parameters.AddWithValue("@ID", data.ID);
                 command.Parameters.AddWithValue("@EmployeeName", data.EmployeeName);
                 command.Parameters.AddWithValue("@Username", data.Username);
                 command.Parameters.AddWithValue("@Password", Password);
@@ -138,28 +139,22 @@ namespace EmployeeRepositoryLayer
         /// <summary>
         ///  database connection for Delete data
         /// </summary>
-        /// <param name="Data">Delete data</param>
+        /// <param name="ID">Delete data</param>
         /// <returns></returns>
-        public async Task<int> DeleteEmployee(EmployeeID Data)
+        public EmployeeID DeleteEmployee(int ID)
         {
 
             try
             {
+                EmployeeID employee = new EmployeeID();
                 SqlConnection connection = DatabaseConnection();
                 //for store procedure and connection to database 
                 SqlCommand command = StoreProcedureConnection("spDeleteEmployeeRcord", connection);
-                command.Parameters.AddWithValue("@ID", Data.ID);
+                command.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
                 connection.Open();
-                int Response = await command.ExecuteNonQueryAsync();
+                SqlDataReader Response = command.ExecuteReader();
                 connection.Close();
-                if (Response != 0)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
-                }
+                return employee;
             }
             catch (Exception e)
             {
@@ -170,25 +165,22 @@ namespace EmployeeRepositoryLayer
         /// <summary>
         ///   database connection for Update Excisting entry
         /// </summary>
-        /// <param name="data">Add new Entry</param>
+        /// <param name="ID">Primary key</param>
+        /// <param name="data">Update data</param>
         /// <returns></returns>
-        public async Task<int> UpdateEmployee(UpdateModel data)
+        public int UpdateEmployeeDetails(int ID, UpdateModel data)
         {
             try
             {
                 SqlConnection connection = DatabaseConnection();
                 //for store procedure and connection to database 
                 SqlCommand command = StoreProcedureConnection("spUpdateemployeedetails", connection);
-                command.Parameters.AddWithValue("@ID", data.ID);
-                command.Parameters.AddWithValue("@EmployeeName", data.EmployeeName);
-                command.Parameters.AddWithValue("@Username", data.Username);
-                command.Parameters.AddWithValue("@Gender", data.Gender);
+                command.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
                 command.Parameters.AddWithValue("@City", data.City);
-                command.Parameters.AddWithValue("@EmailID", data.EmailID);
                 command.Parameters.AddWithValue("@Designation", data.Designation);
                 command.Parameters.AddWithValue("@WorkingExperience", data.WorkingExperience);
                 connection.Open();
-                int Response = await command.ExecuteNonQueryAsync();
+                int Response = command.ExecuteNonQuery();
                 connection.Close();
                 if (Response == 0)
                 {
@@ -210,11 +202,11 @@ namespace EmployeeRepositoryLayer
         /// </summary>
         /// <param name="ID">Add new Entry</param>
         /// <returns></returns>
-        public UpdateModel Getspecificemployee(int ID)
+        public Gatedetails Getspecificemployee(int ID)
         {
             try
             {
-                UpdateModel employee = new UpdateModel();
+                Gatedetails employee = new Gatedetails();
                 SqlConnection connection = DatabaseConnection();
                 //for store procedure and connection to database 
                 SqlCommand command = StoreProcedureConnection("spSpecificEmployeeRcord", connection);
@@ -245,11 +237,11 @@ namespace EmployeeRepositoryLayer
         /// <summary>
         ///  database connection for get all emplyee details
         /// </summary>
-        public IEnumerable<UpdateModel> GetAllemployee()
+        public IEnumerable<Gatedetails> GetAllemployee()
         {
             try
             {
-                List<UpdateModel> listemployee = new List<UpdateModel>();
+                List<Gatedetails> listemployee = new List<Gatedetails>();
                 SqlConnection connection = DatabaseConnection();
                 //for store procedure and connection to database 
                 SqlCommand command = StoreProcedureConnection("spAllEmployeeDetail", connection);
@@ -258,7 +250,7 @@ namespace EmployeeRepositoryLayer
                 SqlDataReader Response = command.ExecuteReader();
                 while (Response.Read())
                 {
-                    UpdateModel employee = new UpdateModel();
+                    Gatedetails employee = new Gatedetails();
                     employee.ID = Convert.ToInt32(Response["ID"]);
                     employee.EmployeeName = Response["EmployeeName"].ToString();
                     employee.Username = Response["Username"].ToString();

@@ -18,14 +18,15 @@ namespace EmployeeRepositoryLayer.Interface
         //Interface method for Employee Login
         Task<bool> EmployeeLogin(Login data);
         //Interface method for Add Employee data
-        Task<bool> AddEmployeeData(EmployeeModel data);
+        Task<bool> AddEmployeeData(Addentry data);
         //Interface method for delete Employee detail
-        Task<int> DeleteEmployee(EmployeeID Data);
+        EmployeeID DeleteEmployee(int ID);
         //Interface method for update Employee detail
-        Task<int> UpdateEmployee(UpdateModel data);
+        int UpdateEmployeeDetails(int ID, UpdateModel data);
+
         //Interface method for get Employee detail by id
-        UpdateModel Getspecificemployee(int ID);
+        Gatedetails Getspecificemployee(int ID);
         //Interface method for get all Employee detail
-        IEnumerable<UpdateModel> GetAllemployee();
+        IEnumerable<Gatedetails> GetAllemployee();
     }
 }

@@ -1,15 +1,13 @@
-﻿///-----------------------------------------------------------------
-///   Class:       EmployeeModel
-///   Description: Poco class for all employee details
-///   Author:      Ruchika                   Date: 18/5/2020
-///-----------------------------------------------------------------
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace EmployeeCommanLayer
 {
-    public class EmployeeModel
+    public class Addentry
     {
+        public string ID { get; set; }
         [Required(ErrorMessage = "Employee Name Is Required")]
         [RegularExpression("^[A-Z][a-zA-Z]{3,15}[ ][A-Z][a-zA-Z]{3,15}$", ErrorMessage = "Employee Name is not valid")]
         public string EmployeeName { get; set; }

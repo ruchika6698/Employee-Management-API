@@ -1,23 +1,16 @@
-﻿///-----------------------------------------------------------------
-///   Class:       EmployeeModel
-///   Description: Poco class for all employee details
-///   Author:      Ruchika                   Date: 18/5/2020
-///-----------------------------------------------------------------
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace EmployeeCommanLayer
 {
-    public class EmployeeModel
+    public class Gatedetails
     {
-        [Required(ErrorMessage = "Employee Name Is Required")]
+        public int ID { get; set; }
         [RegularExpression("^[A-Z][a-zA-Z]{3,15}[ ][A-Z][a-zA-Z]{3,15}$", ErrorMessage = "Employee Name is not valid")]
         public string EmployeeName { get; set; }
-        [Required(ErrorMessage = "Username Is Required")]
         public string Username { get; set; }
-        [Required(ErrorMessage = "Password Is Required")]
-        public string Password { get; set; }
-        [Required(ErrorMessage = "Gender Is Required")]
         public string Gender { get; set; }
         public string City { get; set; }
         [Required(ErrorMessage = "EmailID Is Required")]

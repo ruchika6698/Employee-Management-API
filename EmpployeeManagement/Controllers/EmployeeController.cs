@@ -51,7 +51,7 @@ namespace EmpployeeManagement.Controllers
                 {
                     var status = "False";
                     var Message = "Registration Failed";
-                    return this.BadRequest(new { status, Message, Info });
+                    return this.BadRequest(new { status, Message, data = Info });
                 }
             }
             catch (Exception e)
@@ -77,13 +77,13 @@ namespace EmpployeeManagement.Controllers
                 {
                     var status = "True";
                     var Message = "Login Successful";
-                    return Ok(new { status, Message, Result });
+                    return Ok(new { status, Message});
                 }
                 else                                        //Username or Password Incorrect
                 {
                     var status = "False";
                     var Message = "Invaid Username Or Password";
-                    return BadRequest(new { status, Message, Result });
+                    return BadRequest(new { status, Message});
                 }
             }
             catch (Exception e)
@@ -99,23 +99,23 @@ namespace EmpployeeManagement.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("addnewentry")]
-        public async Task<IActionResult> AddEmployeeData([FromBody]EmployeeModel Info)
+        public async Task<IActionResult> AddEmployeeData([FromBody]Addentry Info)
         {
             try
             {
-                bool entry = await BusinessLayer.AddEmployeeData(Info);
+                bool result = await BusinessLayer.AddEmployeeData(Info);
                 //if entry is not equal to null then Login sucessful
-                if (!entry.Equals(null))
+                if (!result.Equals(null))
                 {
                     var status = "True";
                     var Message = "New Entry Added Sucessfully";
-                    return this.Ok(new { status, Message, Info });
+                    return this.Ok(new { status, Message, data=Info });
                 }
                 else                                              //Entry is not added
                 {
                     var status = "False";
                     var Message = "New Entry is not Added";
-                    return this.BadRequest(new { status, Message, Info });
+                    return this.BadRequest(new { status, Message, data=Info });
                 }
             }
             catch (Exception e)
@@ -127,27 +127,26 @@ namespace EmpployeeManagement.Controllers
         /// <summary>
         ///  API for Delete data
         /// </summary>
-        /// <param name="Data">Delete data</param>
+        /// <param name="ID">Delete data</param>
         /// <returns></returns>
-        [HttpDelete]
-        [Route("delete")]
-        public async Task<IActionResult> DeleteEmployee(EmployeeID Data)
+        [HttpDelete("{ID}")]
+        public IActionResult DeleteEmployee(int ID)
         {
             try
             {
-                int result = await BusinessLayer.DeleteEmployee(Data);
+                var result = BusinessLayer.DeleteEmployee(ID);
                 //if result is not equal to zero then details Deleted sucessfully
-                if (result != 0)
+                if (!result.Equals(null))
                 {
                     var Status = "True";
                     var Message = "Employee Data deleted Sucessfully";
-                    return this.Ok(new { Status, Message, Data });
+                    return this.Ok(new { Status, Message, Data=ID });
                 }
                 else                                           //Data is not deleted 
                 {
                     var Status = "False";
                     var Message = "Employee Data is not deleted Sucessfully";
-                    return this.BadRequest(new { Status, Message, Data });
+                    return this.BadRequest(new { Status, Message, Data=ID});
                 }
             }
             catch (Exception e)
@@ -159,46 +158,58 @@ namespace EmpployeeManagement.Controllers
         /// <summary>
         ///  API for Update Excisting entry
         /// </summary>
-        /// <param name="data">Update data</param>
+        /// <param name="ID">Primary key</param>
+        /// <param name="Info">Update data</param>
         /// <returns></returns>
-        [HttpPatch]
-        [Route("update")]
-        public async Task<IActionResult> UpdateEmployee([FromBody] UpdateModel data)
+        [HttpPut("{ID}")]
+        public ActionResult UpdateEmployeeDetail([FromRoute]int ID, [FromBody]UpdateModel Info)
         {
             try
             {
-                int Result = await BusinessLayer.UpdateEmployee(data);
-                //if result is equal to zero then wrong input 
-                if (Result == 0)
-                {
-                    var Status = "False";
-                    var Message = "wrong input";
-                    return this.BadRequest(new { Status, Message, data });
-                }
-                else                                             //Else employee Data is updated Sucessfully
+                var response = BusinessLayer.UpdateEmployeeDetails(ID,Info);
+                if (!response.Equals(null))
                 {
                     var Status = "True";
                     var Message = "Employee Data Updated Sucessfully";
-                    return this.Ok(new { Status, Message, data });
+                    return this.Ok(new { Status, Message, data= Info });
+                }
+                else
+                {
+                    var status = "False";
+                    var Message = "Employee Data not Updated";
+                    return this.BadRequest(new { status, Message, data= Info });
                 }
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                throw new Exception(e.Message);
+                return BadRequest(new { error = exception.Message });
             }
         }
 
         // <summary>
         ///  API for get specific emplyee details
         /// </summary>
-        /// <param name="data">Add new Entry</param>
+        /// <param name="ID">Update data</param>
         /// <returns></returns>
         [HttpGet("{ID}")]
-        public UpdateModel Getspecificemployee(int ID)
+        public IActionResult Getspecificemployee(int ID)
         {
             try
             {
-                return BusinessLayer.Getspecificemployee(ID);
+                var result = BusinessLayer.Getspecificemployee(ID);
+                //if result is not equal to zero then details found
+                if (!result.Equals(null))
+                {
+                    var Status = "True";
+                    var Message = "Employee Data found ";
+                    return this.Ok(new { Status, Message, Data = result });
+                }
+                else                                           //Data is not found
+                {
+                    var Status = "False";
+                    var Message = "Employee Data is not found";
+                    return this.BadRequest(new { Status, Message, Data = result });
+                }
             }
             catch (Exception e)
             {
@@ -210,11 +221,25 @@ namespace EmpployeeManagement.Controllers
         ///  API for get all emplyee details
         /// </summary>
         [HttpGet]
-        public IEnumerable<UpdateModel> GetAllemployee()
+        public ActionResult<IEnumerable<Gatedetails>> GetAllemployee()
         {
             try
             {
-                return BusinessLayer.GetAllemployee();
+                var result = BusinessLayer.GetAllemployee();
+                //if result is not equal to zero then details found
+                if (!result.Equals(null))
+                {
+                    var Status = "True";
+                    var Message = "Employee Data found ";
+                    return this.Ok(new { Status, Message, Data = result });
+                }
+                else                                           //Data is not found
+                {
+                    var Status = "False";
+                    var Message = "Employee Data is not found";
+                    return this.BadRequest(new { Status, Message, Data = result });
+                }
+                
             }
             catch (Exception e)
             {

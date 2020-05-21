@@ -74,11 +74,11 @@ namespace EmployeeBusinessLayer
         /// </summary>
         /// <param name="data">Add new Entry</param>
         /// <returns></returns>
-        public async Task<bool> AddEmployeeData(EmployeeModel data)
+        public async Task<bool> AddEmployeeData(Addentry data)
         {
             try
             {
-                var Result = await _EmployeeRepository.EmployeeRegister(data);
+                var Result = await _EmployeeRepository.AddEmployeeData(data);
                 //if result is not equal null then return true
                 if (!Result.Equals(null))
                 {
@@ -100,20 +100,11 @@ namespace EmployeeBusinessLayer
         /// </summary>
         /// <param name="Data">Delete data</param>
         /// <returns></returns>
-        public async Task<int> DeleteEmployee(EmployeeID Data)
+        public EmployeeID DeleteEmployee(int ID)
         {
             try
             {
-                int Result = await _EmployeeRepository.DeleteEmployee(Data);
-                //if result is equal null then return true
-                if (Result == 0)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return 1;
-                }
+                return _EmployeeRepository.DeleteEmployee(ID);
             }
             catch (Exception e)
             {
@@ -124,22 +115,15 @@ namespace EmployeeBusinessLayer
         /// <summary>
         ///  API for Update Excisting entry
         /// </summary>
+        /// <param name="ID">Primary key</param>
         /// <param name="data">Update data</param>
         /// <returns></returns>
-        public async Task<int> UpdateEmployee(UpdateModel data)
+        public int UpdateEmployeeDetails(int ID,UpdateModel data)
         {
             try
             {
-                int Result = await _EmployeeRepository.UpdateEmployee(data);
-                //if result is equal null then return true
-                if (Result == 0)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return 1;
-                }
+                var result = _EmployeeRepository.UpdateEmployeeDetails(ID, data);
+                return result;
             }
             catch (Exception e)
             {
@@ -147,12 +131,13 @@ namespace EmployeeBusinessLayer
             }
         }
 
+
         /// <summary>
         ///  API for get specific emplyee details
         /// </summary>
         /// <param name="ID"> get specific Entry</param>
         /// <returns></returns>
-        public UpdateModel Getspecificemployee(int ID)
+        public Gatedetails Getspecificemployee(int ID)
         {
             try
             {
@@ -167,7 +152,7 @@ namespace EmployeeBusinessLayer
         /// <summary>
         ///  API for get all emplyee details
         /// </summary>
-        public IEnumerable<UpdateModel> GetAllemployee()
+        public IEnumerable<Gatedetails> GetAllemployee()
         {
             try
             {

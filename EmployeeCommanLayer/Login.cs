@@ -14,7 +14,9 @@ namespace EmployeeCommanLayer
     {
         [Required(ErrorMessage = "Username Is Required")]
         public string Username { get; set; }
+
         [Required(ErrorMessage = "Password Is Required")]
+        [RegularExpression("^.{8,30}$", ErrorMessage = "Password Length should be between 8 to 15")]
         public string Password { get; set; }
     }
 }

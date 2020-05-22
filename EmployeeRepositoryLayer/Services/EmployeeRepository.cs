@@ -68,25 +68,29 @@ namespace EmployeeRepositoryLayer
         /// </summary>
         /// <param name="data"> Login API</param>
         /// <returns></returns>
-        public async Task<bool> EmployeeLogin(Login data)
+        public async Task<int> EmployeeLogin(Login data)
         {
             try
             {
                 SqlConnection connection = DatabaseConnection();
-                string Password = EncryptedPassword.EncodePasswordToBase64(data.Password);
-                SqlCommand command = StoreProcedureConnection("spEmployee_login", connection);
+                SqlCommand command = StoreProcedureConnection("splogin_pro", connection);
                 command.Parameters.AddWithValue("@Username", data.Username);
-                command.Parameters.AddWithValue("@Password", Password);
+                command.Parameters.AddWithValue("@Password", data.Password);
                 connection.Open();
-                int Response = await command.ExecuteNonQueryAsync();
-                connection.Close();
-                if (Response != 0)
+                SqlDataReader reader = await command.ExecuteReaderAsync();
+                int Status = 0;
+                while (reader.Read())
                 {
-                    return true;
+                    Status = reader.GetInt32(0);
+                }
+                connection.Close();
+                if (Status == 1)
+                {
+                    return 1;
                 }
                 else
                 {
-                    return false;
+                    return 0;
                 }
             }
             catch (Exception e)

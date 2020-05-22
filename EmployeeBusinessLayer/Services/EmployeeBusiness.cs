@@ -49,19 +49,19 @@ namespace EmployeeBusinessLayer
         /// </summary>
         /// <param name="data"> Login API</param>
         /// <returns></returns>
-        public async Task<bool> EmployeeLogin(Login data)
+        public async Task<int> EmployeeLogin(Login data)
         {
             try
             {
                 var Result = await _EmployeeRepository.EmployeeLogin(data);
                 //if result is not equal null then return true
-                if (!Result.Equals(null))
+                if (!Result.Equals(0))
                 {
-                    return true;
+                    return 1;
                 }
                 else
                 {
-                    return false;
+                    return 0;
                 }
             }
             catch (Exception e)

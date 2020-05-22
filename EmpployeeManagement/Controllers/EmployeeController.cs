@@ -71,9 +71,9 @@ namespace EmpployeeManagement.Controllers
         {
             try
             {
-                var Result = await BusinessLayer.EmployeeLogin(Info);
+                int Result = await BusinessLayer.EmployeeLogin(Info);
                 //if Result is not equal to null then Login sucessful
-                if (!Result.Equals(null))
+                if (Result != 0)
                 {
                     var status = "True";
                     var Message = "Login Successful";

@@ -73,9 +73,11 @@ namespace EmployeeRepositoryLayer
             try
             {
                 SqlConnection connection = DatabaseConnection();
+                //password encrption
+                string Password = EncryptedPassword.EncodePasswordToBase64(data.Password);
                 SqlCommand command = StoreProcedureConnection("splogin_pro", connection);
                 command.Parameters.AddWithValue("@Username", data.Username);
-                command.Parameters.AddWithValue("@Password", data.Password);
+                command.Parameters.AddWithValue("@Password", Password);
                 connection.Open();
                 SqlDataReader reader = await command.ExecuteReaderAsync();
                 int Status = 0;
@@ -109,14 +111,11 @@ namespace EmployeeRepositoryLayer
             try
             {
                 SqlConnection connection = DatabaseConnection();
-                //password Encryption
-                string Password = EncryptedPassword.EncodePasswordToBase64(data.Password);
                 //for store procedure and connection to database 
                 SqlCommand command = StoreProcedureConnection("spAdddnewEmployees", connection);
                 command.Parameters.AddWithValue("@ID", data.ID);
                 command.Parameters.AddWithValue("@EmployeeName", data.EmployeeName);
                 command.Parameters.AddWithValue("@Username", data.Username);
-                command.Parameters.AddWithValue("@Password", Password);
                 command.Parameters.AddWithValue("@Gender", data.Gender);
                 command.Parameters.AddWithValue("@City", data.City);
                 command.Parameters.AddWithValue("@EmailID", data.EmailID);

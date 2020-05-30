@@ -36,7 +36,7 @@ namespace EmployeeRepositoryLayer
                 //password encrption
                 string Password = EncryptedPassword.EncodePasswordToBase64(data.Password);
                 //for store procedure and connection to database
-                SqlCommand command = StoreProcedureConnection("spRegisterEmployeeManagement", connection);
+                SqlCommand command = StoreProcedureConnection("spUserRegister", connection);
                 command.Parameters.AddWithValue("@EmployeeName", data.EmployeeName);
                 command.Parameters.AddWithValue("@Username", data.Username);
                 command.Parameters.AddWithValue("@Password", Password);
@@ -78,6 +78,7 @@ namespace EmployeeRepositoryLayer
                 SqlCommand command = StoreProcedureConnection("splogin_pro", connection);
                 command.Parameters.AddWithValue("@Username", data.Username);
                 command.Parameters.AddWithValue("@Password", Password);
+                command.Parameters.AddWithValue("@Designation", data.Designation);
                 connection.Open();
                 SqlDataReader reader = await command.ExecuteReaderAsync();
                 int Status = 0;
@@ -113,7 +114,6 @@ namespace EmployeeRepositoryLayer
                 SqlConnection connection = DatabaseConnection();
                 //for store procedure and connection to database 
                 SqlCommand command = StoreProcedureConnection("spAdddnewEmployees", connection);
-                command.Parameters.AddWithValue("@ID", data.ID);
                 command.Parameters.AddWithValue("@EmployeeName", data.EmployeeName);
                 command.Parameters.AddWithValue("@Username", data.Username);
                 command.Parameters.AddWithValue("@Gender", data.Gender);
@@ -247,7 +247,7 @@ namespace EmployeeRepositoryLayer
                 List<Gatedetails> listemployee = new List<Gatedetails>();
                 SqlConnection connection = DatabaseConnection();
                 //for store procedure and connection to database 
-                SqlCommand command = StoreProcedureConnection("spAllEmployeeDetail", connection);
+                SqlCommand command = StoreProcedureConnection("spAllEmployees", connection);
                 connection.Open();
                 //Read data from database
                 SqlDataReader Response = command.ExecuteReader();

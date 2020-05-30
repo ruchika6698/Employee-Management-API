@@ -8,7 +8,7 @@ GO
 -- Create date: 14/5/2020
 -- Description:	Store procedure for employee Register
 -- =============================================
-ALTER PROCEDURE spRegisterEmployeeManagement
+CREATE PROCEDURE spUserRegister
 @EmployeeName varchar(50),
 @Username varchar(50),
 @Password varchar(50),
@@ -21,7 +21,7 @@ AS
 BEGIN
 	SET NOCOUNT ON; 
 
-	INSERT INTO Employees(EmployeeName,Username,Password,Gender,City,EmailID,Designation,WorkingExperience)
+	INSERT INTO Userdata(EmployeeName,Username,Password,Gender,City,EmailID,Designation,WorkingExperience)
 		VALUES(@EmployeeName,@Username,@Password,@Gender,@City,@EmailID,@Designation,@WorkingExperience);
 END
 GO

@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v2.1": {
       "EmpployeeManagement/1.0.0": {
         "dependencies": {
+          "EO.WebBrowser": "20.1.45",
           "EmployeeBusinessLayer": "1.0.0",
           "EmployeeCommanLayer": "1.0.0",
           "EmployeeRepositoryLayer": "1.0.0",
@@ -45,6 +46,27 @@
         },
         "compile": {
           "EmpployeeManagement.dll": {}
+        }
+      },
+      "EO.WebBrowser/20.1.45": {
+        "runtime": {
+          "lib/EO.Base.dll": {
+            "assemblyVersion": "20.1.45.0",
+            "fileVersion": "20.1.45.0"
+          },
+          "lib/EO.WebBrowser.dll": {
+            "assemblyVersion": "20.1.45.0",
+            "fileVersion": "20.1.45.0"
+          },
+          "lib/EO.WebEngine.dll": {
+            "assemblyVersion": "20.1.45.0",
+            "fileVersion": "20.1.45.0"
+          }
+        },
+        "compile": {
+          "lib/EO.Base.dll": {},
+          "lib/EO.WebBrowser.dll": {},
+          "lib/EO.WebEngine.dll": {}
         }
       },
       "Microsoft.AspNetCore.Razor.Design/2.1.2": {},
@@ -3680,6 +3702,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "EO.WebBrowser/20.1.45": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Lzf5QksM+rVa25qyK7M2R54NXyDp0e+2JtNvImdV6C+LDUiaqMQmGKX/mOKumQAzY8OH2/GcQpE1VUrsR+BOXg==",
+      "path": "eo.webbrowser/20.1.45",
+      "hashPath": "eo.webbrowser.20.1.45.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor.Design/2.1.2": {
       "type": "package",

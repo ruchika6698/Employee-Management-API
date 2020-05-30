@@ -5,13 +5,18 @@
 ///-----------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using EmployeeBusinessLayer.Interface;
 using EmployeeCommanLayer;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace EmpployeeManagement.Controllers
 {
@@ -43,13 +48,13 @@ namespace EmpployeeManagement.Controllers
                 //if data is not equal to null then Registration sucessful
                 if (!data.Equals(null))
                 {
-                    var status = "True";
+                    var status = "Success";
                     var Message = "Registration Successfull";
                     return this.Ok(new { status, Message, Info });
                 }
                 else                                     //Registration Fail
                 {
-                    var status = "False";
+                    var status = "Unsuccess";
                     var Message = "Registration Failed";
                     return this.BadRequest(new { status, Message, data = Info });
                 }
@@ -72,18 +77,34 @@ namespace EmpployeeManagement.Controllers
             try
             {
                 int Result = await BusinessLayer.EmployeeLogin(Info);
+                var symmetricSecuritykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+
+                var signingCreds = new SigningCredentials(symmetricSecuritykey, SecurityAlgorithms.HmacSha256);
+
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Role, Info.Designation.ToString()),
+                    new Claim("Username", Info.Username.ToString()),
+                    new Claim("Password", Info.Password.ToString())
+                };
+                var token = new JwtSecurityToken(_config["Jwt:Issuer"],
+                    _config["Jwt:Issuer"],
+                    claims,
+                    expires: DateTime.Now.AddHours(120),
+                    signingCredentials: signingCreds);
                 //if Result is not equal to null then Login sucessful
                 if (Result != 0)
                 {
-                    var status = "True";
+                    var status = "Success";
                     var Message = "Login Successful";
-                    return Ok(new { status, Message});
+                    var Token = new JwtSecurityTokenHandler().WriteToken(token);
+                    return Ok(new { status, Message,Token});
                 }
                 else                                        //Username or Password Incorrect
                 {
-                    var status = "False";
+                    var status = "Unsuccess";
                     var Message = "Invaid Username Or Password";
-                    return BadRequest(new { status, Message});
+                    return BadRequest(new { status, Message, Result = Info });
                 }
             }
             catch (Exception e)
@@ -107,13 +128,13 @@ namespace EmpployeeManagement.Controllers
                 //if entry is not equal to null then Login sucessful
                 if (!result.Equals(null))
                 {
-                    var status = "True";
+                    var status = "Success";
                     var Message = "New Entry Added Sucessfully";
                     return this.Ok(new { status, Message, data=Info });
                 }
                 else                                              //Entry is not added
                 {
-                    var status = "False";
+                    var status = "Unsuccess";
                     var Message = "New Entry is not Added";
                     return this.BadRequest(new { status, Message, data=Info });
                 }
@@ -138,13 +159,13 @@ namespace EmpployeeManagement.Controllers
                 //if result is not equal to zero then details Deleted sucessfully
                 if (!result.Equals(null))
                 {
-                    var Status = "True";
+                    var Status = "Success";
                     var Message = "Employee Data deleted Sucessfully";
                     return this.Ok(new { Status, Message, Data=ID });
                 }
                 else                                           //Data is not deleted 
                 {
-                    var Status = "False";
+                    var Status = "Unsuccess";
                     var Message = "Employee Data is not deleted Sucessfully";
                     return this.BadRequest(new { Status, Message, Data=ID});
                 }
@@ -169,13 +190,13 @@ namespace EmpployeeManagement.Controllers
                 var response = BusinessLayer.UpdateEmployeeDetails(ID,Info);
                 if (!response.Equals(null))
                 {
-                    var Status = "True";
+                    var Status = "Success";
                     var Message = "Employee Data Updated Sucessfully";
                     return this.Ok(new { Status, Message, data= Info });
                 }
                 else
                 {
-                    var status = "False";
+                    var status = "Unsuccess";
                     var Message = "Employee Data not Updated";
                     return this.BadRequest(new { status, Message, data= Info });
                 }
@@ -200,13 +221,13 @@ namespace EmpployeeManagement.Controllers
                 //if result is not equal to zero then details found
                 if (!result.Equals(null))
                 {
-                    var Status = "True";
+                    var Status = "Success";
                     var Message = "Employee Data found ";
                     return this.Ok(new { Status, Message, Data = result });
                 }
                 else                                           //Data is not found
                 {
-                    var Status = "False";
+                    var Status = "Unsuccess";
                     var Message = "Employee Data is not found";
                     return this.BadRequest(new { Status, Message, Data = result });
                 }
@@ -229,13 +250,13 @@ namespace EmpployeeManagement.Controllers
                 //if result is not equal to zero then details found
                 if (!result.Equals(null))
                 {
-                    var Status = "True";
+                    var Status = "Success";
                     var Message = "Employee Data found ";
                     return this.Ok(new { Status, Message, Data = result });
                 }
                 else                                           //Data is not found
                 {
-                    var Status = "False";
+                    var Status = "Unsuccess";
                     var Message = "Employee Data is not found";
                     return this.BadRequest(new { Status, Message, Data = result });
                 }

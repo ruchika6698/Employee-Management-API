@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace EmpployeeManagement
 {
@@ -55,6 +56,11 @@ namespace EmpployeeManagement
                         ValidAudience = Configuration["JWT:Audience"]
                     };
                 });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Employee Management API", Description = "Swagger Employee Management API" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,7 +83,9 @@ namespace EmpployeeManagement
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-           
+            app.UseSwaggerUI(
+               c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Core API"); }
+               );
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GWL4PAAMg2ffdDrrJbjAXzETcFK8j4XPFmfOxpgnPKpEcF9JJOEgA59/sW6k+/ftpWCxuy8+DMYmkZX6DMasdw==",
+  "dgSpecHash": "Wf9ewvrJSrEI6Wg+NGrFgLwAqJqriyC6ekdapKbzGYLqkIZQt0DfFQ5QHFGht88qg9au+7q/6AMT1pKoQTn2qw==",
   "success": true,
   "projectFilePath": "C:\\Users\\boss\\source\\repos\\EmployeeManagementAPI\\EmpployeeManagement\\EmpployeeManagement.csproj",
   "expectedPackageFiles": [
@@ -206,6 +206,9 @@
     "C:\\Users\\boss\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\boss\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\boss\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\boss\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\2.1.0\\swashbuckle.aspnetcore.swagger.2.1.0.nupkg.sha512",
+    "C:\\Users\\boss\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\2.1.0\\swashbuckle.aspnetcore.swaggergen.2.1.0.nupkg.sha512",
+    "C:\\Users\\boss\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\2.1.0\\swashbuckle.aspnetcore.swaggerui.2.1.0.nupkg.sha512",
     "C:\\Users\\boss\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\boss\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\boss\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
